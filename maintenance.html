@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Permet au site de bien s'afficher sur téléphone -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Assistance - École Jacques Monod</title>
+
+    <!-- On relie notre fichier CSS -->
+    <link rel="stylesheet" href="design.css">
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         PAGE 1 : CRÉATION DU COMPTE
+         Cette page apparaît quand l'élève arrive
+         pour la première fois sur le site.
+    ================================================== -->
+
+    <section id="pageCompte" class="page-compte">
+
+        <div class="boite-compte">
+
+            <!-- Nom de l'école -->
+            <p class="nom-ecole">
+                École Jacques Monod
+            </p>
+
+            <!-- Ton logo -->
+            <img
+                src="logo ejm.png"
+                alt="Logo École Jacques Monod"
+                class="logo-compte"
+            >
+
+            <h1>Créer votre compte</h1>
+
+            <p class="texte-compte">
+                Entrez vos informations pour accéder
+                à l'assistance informatique.
+            </p>
+
+
+            <!-- NOM : OBLIGATOIRE -->
+            <label>
+                Nom <span>*</span>
+            </label>
+
+            <input
+                type="text"
+                id="nom"
+                placeholder="Votre nom"
+            >
+
+
+            <!-- PRÉNOM : OBLIGATOIRE -->
+            <label>
+                Prénom <span>*</span>
+            </label>
+
+            <input
+                type="text"
+                id="prenom"
+                placeholder="Votre prénom"
+            >
+
+
+            <!-- CLASSE : FACULTATIVE -->
+            <label>
+                Classe
+            </label>
+
+            <input
+                type="text"
+                id="classe"
+                placeholder="Votre classe (facultatif)"
+            >
+
+
+            <!-- EMAIL : FACULTATIF -->
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Votre email (facultatif)"
+            >
+
+
+            <!-- Bouton pour aller à la page assistance -->
+            <button
+                class="bouton-continuer"
+                onclick="creerCompte()"
+            >
+                Continuer
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         PAGE 2 : ASSISTANCE
+         Cette page apparaît après la création du compte.
+    ================================================== -->
+
+    <section id="pageAssistance" class="page-assistance">
+
+
+        <!-- BARRE DU HAUT -->
+
+        <header class="barre-haut">
+
+            <!-- ÉCOLE -->
+
+            <div class="ecole">
+
+                <span class="icone-ecole">
+                    🏫
+                </span>
+
+                <div>
+
+                    <strong>
+                        École Jacques Monod
+                    </strong>
+
+                    <small>
+                        Assistance informatique
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROFIL -->
+
+            <div class="profil">
+
+                <button
+                    class="bouton-profil"
+                    onclick="ouvrirMenu()"
+                >
+
+                    <span class="petit-avatar">
+                        👤
+                    </span>
+
+                    <span id="nomDansMenu">
+                        Mon profil
+                    </span>
+
+                    <span>
+                        ⌄
+                    </span>
+
+                </button>
+
+
+                <!-- MENU QUI S'OUVRE QUAND ON CLIQUE -->
+
+                <div
+                    id="menuProfil"
+                    class="menu-profil"
+                >
+
+                    <div class="profil-info">
+
+                        <div class="grand-avatar">
+                            👤
+                        </div>
+
+                        <div>
+
+                            <strong id="profilNom">
+                                Mon profil
+                            </strong>
+
+                            <small id="profilEmail">
+                                Email non renseigné
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <hr>
+
+
+                    <!-- Modifier le profil -->
+
+                    <button onclick="modifierProfil()">
+                        ⚙️ Modifier mon profil
+                    </button>
+
+
+                    <!-- Déconnexion -->
+
+                    <button onclick="deconnexion()">
+                        🚪 Déconnexion
+                    </button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- CONTENU PRINCIPAL -->
+
+        <main>
+
+
+            <!-- TITRE -->
+
+            <section class="accueil">
+
+                <h1>
+                    ASSISTANCE INFORMATIQUE
+                </h1>
+
+
+                <!-- Le prénom sera ajouté automatiquement -->
+
+                <h2 id="bonjour">
+                    Bonjour 👋
+                </h2>
+
+
+                <p>
+                    Quel problème avez-vous ?
+                </p>
+
+            </section>
+
+
+
+            <!-- ZONE PRINCIPALE -->
+
+            <div class="conteneur">
+
+
+                <!-- ==========================
+                     ENVOYER UNE DEMANDE
+                =========================== -->
+
+                <section class="carte">
+
+                    <h2>
+                        Signaler un problème
+                    </h2>
+
+
+                    <!-- L'élève n'a PAS besoin
+                         de remettre son nom,
+                         prénom ou email ici. -->
+
+
+                    <textarea
+                        id="probleme"
+                        placeholder="Décrivez votre problème ou votre demande..."
+                    ></textarea>
+
+
+
+                    <!-- PHOTO / CAPTURE -->
+
+                    <label class="zone-photo">
+
+                        <span class="icone-photo">
+                            📷
+                        </span>
+
+                        <span>
+
+                            <strong>
+                                Ajouter une photo ou une capture
+                            </strong>
+
+                            <small>
+                                Facultatif
+                            </small>
+
+                        </span>
+
+
+                        <!-- Le vrai bouton fichier
+                             est caché par le CSS -->
+
+                        <input
+                            type="file"
+                            id="photo"
+                            accept="image/*"
+                            onchange="photoChoisie()"
+                        >
+
+                    </label>
+
+
+                    <!-- Nom de la photo choisie -->
+
+                    <p
+                        id="photoNom"
+                        class="photo-nom"
+                    ></p>
+
+
+
+                    <!-- ENVOYER -->
+
+                    <button
+                        class="bouton-envoyer"
+                        onclick="envoyerDemande()"
+                    >
+                        Envoyer ma demande
+                    </button>
+
+                </section>
+
+
+
+                <!-- ==========================
+                     MES DEMANDES
+                =========================== -->
+
+                <section class="carte">
+
+                    <h2>
+                        Mes demandes
+                    </h2>
+
+                    <p class="description">
+                        Retrouvez ici toutes vos demandes.
+                    </p>
+
+
+                    <!-- Les demandes apparaîtront
+                         automatiquement ici -->
+
+                    <div id="listeDemandes">
+
+                        <div class="aucune-demande">
+
+                            <span>
+                                📭
+                            </span>
+
+                            <p>
+                                Vous n'avez encore envoyé
+                                aucune demande.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         FENÊTRE POUR MODIFIER LE PROFIL
+    ================================================== -->
+
+    <div
+        id="fenetreProfil"
+        class="fond-fenetre"
+    >
+
+        <div class="fenetre">
+
+
+            <!-- Fermer -->
+
+            <button
+                class="fermer"
+                onclick="fermerProfil()"
+            >
+                ×
+            </button>
+
+
+            <div class="avatar-fenetre">
+                👤
+            </div>
+
+
+            <h2>
+                Mon profil
+            </h2>
+
+
+            <!-- NOM -->
+
+            <label>
+                Nom <span>*</span>
+            </label>
+
+            <input
+                type="text"
+                id="modifierNom"
+            >
+
+
+            <!-- PRÉNOM -->
+
+            <label>
+                Prénom <span>*</span>
+            </label>
+
+            <input
+                type="text"
+                id="modifierPrenom"
+            >
+
+
+            <!-- CLASSE -->
+
+            <label>
+                Classe
+            </label>
+
+            <input
+                type="text"
+                id="modifierClasse"
+            >
+
+
+            <!-- EMAIL -->
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="modifierEmail"
+            >
+
+
+            <button
+                class="bouton-envoyer"
+                onclick="sauvegarderModification()"
+            >
+                Enregistrer
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         FENÊTRE : VOIR UNE DEMANDE
+    ================================================== -->
+
+    <div
+        id="fenetreDemande"
+        class="fond-fenetre"
+    >
+
+        <div class="fenetre detail-demande">
+
+
+            <button
+                class="fermer"
+                onclick="fermerDemande()"
+            >
+                ×
+            </button>
+
+
+            <h2>
+                Ma demande
+            </h2>
+
+
+            <!-- Les informations seront ajoutées
+                 automatiquement par JavaScript -->
+
+            <div id="detailDemande"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- On relie le JavaScript -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
